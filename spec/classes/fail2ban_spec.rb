@@ -10,7 +10,9 @@ describe 'fail2ban' do
     it { should contain_package('fail2ban').with_ensure('present') }
     it { should contain_service('fail2ban').with_ensure('running') }
     it { should contain_service('fail2ban').with_enable('true') }
-    it { should_not contain_file('fail2ban.local') }
+    it { should contain_file('fail2ban.local').with_ensure('present') }
+    it { should contain_file('fail2ban.local').with_content(nil) }
+    it { should contain_file('fail2ban.local').with_source(nil) }
     it { should_not contain_file('jail.local') }
   end
 
@@ -50,7 +52,9 @@ enabled  = true/) }
     it { should contain_package('fail2ban').with_ensure('present') }
     it { should contain_service('fail2ban').with_ensure('running') }
     it { should contain_service('fail2ban').with_enable('true') }
-    it { should_not contain_file('fail2ban.local') }
+    it { should contain_file('fail2ban.local').with_ensure('present') }
+    it { should contain_file('fail2ban.local').with_content(nil) }
+    it { should contain_file('fail2ban.local').with_source(nil) }
     it { should_not contain_file('jail.local') }
     it { should contain_monitor__process('fail2ban_process').with_enable('true') }
   end
@@ -69,7 +73,9 @@ enabled  = true/) }
     it { should contain_package('fail2ban').with_ensure('present') }
     it 'should stop Service[fail2ban]' do should contain_service('fail2ban').with_ensure('stopped') end
     it 'should not enable at boot Service[fail2ban]' do should contain_service('fail2ban').with_enable('false') end
-    it { should_not contain_file('fail2ban.local') }
+    it { should contain_file('fail2ban.local').with_ensure('present') }
+    it { should contain_file('fail2ban.local').with_content(nil) }
+    it { should contain_file('fail2ban.local').with_source(nil) }
     it { should_not contain_file('jail.local') }
     it { should contain_monitor__process('fail2ban_process').with_enable('false') }
   end
@@ -80,8 +86,9 @@ enabled  = true/) }
     it { should_not contain_service('fail2ban').with_ensure('present') }
     it { should_not contain_service('fail2ban').with_ensure('absent') }
     it 'should not enable at boot Service[fail2ban]' do should contain_service('fail2ban').with_enable('false') end
-    it { should_not contain_file('fail2ban.local') }
-    it { should_not contain_file('jail.local') }
+    it { should contain_file('fail2ban.local').with_ensure('present') }
+    it { should contain_file('fail2ban.local').with_content(nil) }
+    it { should contain_file('fail2ban.local').with_source(nil) }
     it { should contain_monitor__process('fail2ban_process').with_enable('false') }
   end
 
