@@ -213,6 +213,7 @@
 #
 # [*service*]
 #   The name of fail2ban service
+# 
 #
 # [*service_status*]
 #   If the fail2ban service init script supports status argument
@@ -537,17 +538,8 @@ class fail2ban (
 
   ### Service monitoring, if enabled ( monitor => true )
   if $fail2ban::bool_monitor == true {
-    if $fail2ban::port != '' {
-      monitor::port { "fail2ban_${fail2ban::protocol}_${fail2ban::port}":
-        protocol => $fail2ban::protocol,
-        port     => $fail2ban::port,
-        target   => $fail2ban::monitor_target,
-        tool     => $fail2ban::monitor_tool,
-        enable   => $fail2ban::manage_monitor,
-        noop     => $fail2ban::noops,
-      }
-    }
-    if $fail2ban::service != '' {
+    # if a service is defined for fail2ban and we have monitoring enabled, monitor it
+    if $fail2ban::service != '' and $fail2ban::service != undef  {
       monitor::process { 'fail2ban_process':
         process  => $fail2ban::process,
         service  => $fail2ban::service,
