@@ -128,7 +128,7 @@ class fail2ban::params {
   $jails_template_footer = 'fail2ban/concat/jail.local-footer.erb'
 
   # General Settings
-  $my_class = ''
+  $my_class = false
   $source = ''
   $template = ''
   $source_dir = ''

@@ -1,5 +1,8 @@
 # Puppet module: fail2ban
 
+
+**Upstream module is now unmaintained, as such this fork will be independantly maintained by Adaptavist**
+
 This is a Puppet module for fail2ban based on the second generation layout ("NextGen") of Example42 Puppet Modules.
 
 Made by Javier Bértoli / Netmanagers
